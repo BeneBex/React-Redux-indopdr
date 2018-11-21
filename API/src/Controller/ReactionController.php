@@ -1,22 +1,17 @@
 <?php
-
 namespace App\Controller;
-
 use App\Model\ReactionModel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
 class ReactionController extends AbstractController
 {
     private $reactionModel;
-
     public function __construct(ReactionModel $reactionModel)
     {
         $this->reactionModel = $reactionModel;
     }
-
     /**
      * @Route("/reaction", methods={"POST"}, name="placeReactionOnMessageId")
      */
@@ -25,7 +20,6 @@ class ReactionController extends AbstractController
         $statuscode = 200;
         $token = null;
         $parameters = json_decode($request->getContent(), true);
-
         try {
             $token = $this->reactionModel->placeReaction($parameters);
         } catch (\InvalidArgumentException $exception) {
@@ -34,7 +28,6 @@ class ReactionController extends AbstractController
             $statuscode = 500;
             var_dump($exception);
         }
-
         return new JsonResponse($token, $statuscode);
     }
 }

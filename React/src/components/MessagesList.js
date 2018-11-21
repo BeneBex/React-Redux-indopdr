@@ -33,7 +33,7 @@ class MessagesList extends Component {
             this.props.messages(r.data)
         });
     }
-    
+
     changeReactionFieldState(messageId) {
         let newState;
 

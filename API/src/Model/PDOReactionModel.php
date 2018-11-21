@@ -9,8 +9,7 @@
 namespace App\Model;
 
 use http\Exception\InvalidArgumentException;
-use phpDocumentor\Reflection\Types\Integer;
-use phpDocumentor\Reflection\Types\String_;
+use Respect\Validation\Validator as v;
 
 class PDOReactionModel implements ReactionModel
 {
@@ -25,12 +24,14 @@ class PDOReactionModel implements ReactionModel
     {
         $pdo = $this->connection->getPdo();
 
-        if ($this->checkTypes($parameters)) {
-            throw new \InvalidArgumentException();
-        }
-
         $reaction = $parameters['reaction'];
+        if(!v::stringType()->notEmpty()->validate($reaction)){
+            throw new InvalidArgumentException();
+        };
         $messageId = $parameters['messageId'];
+        if(!v::digit()->notEmpty()->validate($messageId)){
+            throw new InvalidArgumentException();
+        };
 
         $statement = $pdo->prepare('INSERT INTO reactions (MessageID, Content) VALUES (?, ?)');
         $statement->bindValue(1, $messageId, \PDO::PARAM_INT);
@@ -39,9 +40,5 @@ class PDOReactionModel implements ReactionModel
         $statement->execute();
 
         return bin2hex($reaction.$messageId);
-    }
-
-    private function checkTypes($parameters) {
-       return $parameters === null;
     }
 }

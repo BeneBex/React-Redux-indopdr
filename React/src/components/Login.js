@@ -38,7 +38,7 @@ class Login extends Component {
     };
     changeUsername(username) {
         let helpUsername = false;
-        if (username == "Jorne" || username == "Bene" || username == "Ferre") {
+        if (username === "Jorne" || username === "Bene" || username === "Ferre") {
             helpUsername = false;
         } else {
             helpUsername = true;

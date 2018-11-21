@@ -13,8 +13,10 @@ interface MessageModel
     public function getAllMessages();
     public function getMessageById($id);
     public function getMessageByPartialContent($keywords);
-    public function getMessageByPartialContentAndCategory($keywords, $id);
-    public function getMessageByCategory($id);
     public function upvoteMessageByMessageId($messageId);
     public function downvoteMessageByMessageId($messageId);
+    public function getMessageByCategory($keywords);
+    public function getMessageByPartialContentAndCategory($keywords, $id);
+    public function postMessage($parameters);
+    public function getMessageByUser($user);
 }

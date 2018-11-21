@@ -15,6 +15,7 @@ const Navbar = (props) => {
                     </Link>
                     <div className="mdl-layout-spacer"></div>
                     <nav className="mdl-navigation mdl-layout--large-screen-only">
+                        <Link className="mdl-navigation__link" to="/newMessage">Nieuw bericht</Link>
                         <Link className="mdl-navigation__link" to="/messages">Alle berichten</Link>
                         <Link className="mdl-navigation__link" to="/search">Zoek een bericht</Link>
                         <Link className="mdl-navigation__link" to="/login">{props.username !== '' ? props.username : "Login"}</Link>
@@ -24,6 +25,7 @@ const Navbar = (props) => {
             <div className="mdl-layout__drawer">
                 <span className="mdl-layout-title">Forum</span>
                 <nav className="mdl-navigation">
+                    <a className="mdl-navigation__link" href="/newMessage">Nieuw bericht</a>
                     <a className="mdl-navigation__link" href="/messages">Alle berichten</a>
                     <a className="mdl-navigation__link" href="/search">Zoek een bericht</a>
                     <a className="mdl-navigation__link" href="/login">{props.username !== '' ? props.username : "Login"}</a>
