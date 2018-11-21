@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jornevanhelvert
- * Date: 18/09/2018
- * Time: 11:42
- */
 
 namespace App\Model;
 
@@ -70,7 +64,7 @@ class PDOMessageModel implements MessageModel
     {
         $pdo = $this->connection->getPdo();
 
-        $statement = $pdo->prepare('SELECT * FROM messages WHERE CategoryID LIKE ?)');
+        $statement = $pdo->prepare('SELECT * FROM messages WHERE CategoryID LIKE ?');
         $statement-> bindValue(1, "%$keywords%", \PDO::PARAM_STR);
 
         $messages = null;
@@ -147,7 +141,7 @@ class PDOMessageModel implements MessageModel
         if (gettype($name) !== 'string') {
             throw new \InvalidArgumentException();
         }
-        $statement = $pdo->prepare('SELECT * FROM messages WHERE Content LIKE ? AND Category LIKE ?');
+        $statement = $pdo->prepare('SELECT * FROM messages WHERE Content LIKE ? AND CategoryID LIKE ?');
         $statement->bindValue(1, "%$keywords%", \PDO::PARAM_STR);
         $statement->bindValue(2, "$name", \PDO::PARAM_STR);
         $messages = null;

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jornevanhelvert
- * Date: 20/09/2018
- * Time: 12:11
- */
 
 namespace App\Model;
 
@@ -41,4 +35,26 @@ class PDOReactionModel implements ReactionModel
 
         return bin2hex($reaction.$messageId);
     }
+
+    public function getReactionById($messageId)
+        {
+            $pdo = $this->connection->getPdo();
+
+            $statement = $pdo->prepare('SELECT * FROM reactions WHERE MessageID=:id');
+            $statement->bindParam(':id', $messageId, \PDO::PARAM_INT);
+
+            $statement->execute();
+            $reaction = null;
+
+            $databaseData = $statement->fetchAll();
+            for ($i = 0; $i < count($databaseData); $i++) {
+                        $reaction = $databaseData[$i];
+
+                        if ($reaction !== null) {
+                            $reactions[] = ['Id' => $reaction[0], 'MessageId' => $reaction[1], 'Content' => $reaction[2]];
+                        }
+            }
+
+            return $reactions;
+        }
 }

@@ -8,6 +8,7 @@ import Welcome from "./components/Welcome";
 import SearchMessageList from "./components/SearchMessageList";
 import Login from "./components/Login";
 import NewMessage from "./components/NewMessage";
+import ReactionList from "./components/ReactionList";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <main className="mdl-layout__content">
             <Switch>
                 <Route exact path='/' component={Welcome} />
+                <Route path="/reactions" component={ReactionList}/>
                 <Route path="/newMessage" component={NewMessage}/>
                 <Route path='/messages' component={MessagesList} />
                 <Route path="/search" component={SearchMessageList}/>

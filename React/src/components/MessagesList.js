@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from "prop-types";
 import {loadMessages} from "../actions/messageAction";
+import Reactions from "./Reactions";
+import ReactPaginate from 'react-paginate';
 
 class MessagesList extends Component {
     constructor(props) {
@@ -14,7 +16,7 @@ class MessagesList extends Component {
             messages: [],
             showReactionField: false,
             messageToReact: 0,
-            reaction: ''
+            reaction: '',
         }
 
         axios.get('http://localhost:8000/messages').then(r => {
@@ -51,7 +53,6 @@ class MessagesList extends Component {
     }
 
     createReaction() {
-
         fetch('http://localhost:8000/reaction', {
             method: 'post',
             body: JSON.stringify({

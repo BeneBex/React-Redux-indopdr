@@ -8,7 +8,7 @@ class NewMessage extends Component {
 
         this.state = {
             inhoud: 'test',
-            categorienummer: 1,
+            categorienaam: '',
             usernaam: 1
         };
     }
@@ -32,16 +32,15 @@ class NewMessage extends Component {
                     </div>
                     <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input className="mdl-textfield__input"
-                               type="number"
+                               type="text"
                                id="category"
-                               onChange={(e) => this.setState({categorienummer: e.target.value})}
+                               onChange={(e) => this.setState({categorienaam: e.target.value})}
                         />
-                        <label className="mdl-textfield__label" htmlFor="category">categorienummer:</label>
+                        <label className="mdl-textfield__label" htmlFor="category">categorie:</label>
                     </div>
                     <div>
-                        <button
-                            className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                            onClick={createMessage}>
+                        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                                onClick={createMessage} >
                             Plaats bericht
                         </button>
                     </div>
@@ -56,13 +55,13 @@ NewMessage.propTypes = {
     username: PropTypes.string,
 }
 
-function createMessage() {
+function createMessage(){
     fetch("http://localhost:8000/newMessage", {
         method: 'post',
         body: JSON.stringify({
             'user': this.state.usernaam,
-            'content': this.state.inhoud,
-            'category': this.state.categorienummer
+            'content': this.state.inhoud.toString(),
+            'category': this.state.categorienaam.toString()
         })
     })
 }

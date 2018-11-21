@@ -12,7 +12,7 @@ const Message = (props) => {
                 <div className="mdl-card__supporting-text mdl-cell--1-offset">
                     <h6>Inhoud:</h6>
                     <p>{props.message.Content}</p>
-                    <p>Categorie: {props.message.Category}</p>
+                    <p>Categorie: {props.message.CategoryId}</p>
                 </div>
                 <div className="mdl-card__actions mdl-card--border">
                     <span className="mdl-cell mdl-cell--6-col">

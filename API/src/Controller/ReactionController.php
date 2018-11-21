@@ -1,10 +1,12 @@
 <?php
 namespace App\Controller;
+
 use App\Model\ReactionModel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 class ReactionController extends AbstractController
 {
     private $reactionModel;
@@ -30,4 +32,27 @@ class ReactionController extends AbstractController
         }
         return new JsonResponse($token, $statuscode);
     }
+
+     /**
+         * @Route("/reaction/{id}", methods={"GET"}, name="getReactionById")
+         */
+        public function getReactionById(int $id)
+        {
+            $statuscode = 200;
+            $reactions[] = null;
+
+            try {
+                        $reactions = $this->reactionModel->getReactionById($id);
+
+                        if ($reactions === null) {
+                            $statuscode = 404;
+                        }
+                    } catch (\InvalidArgumentException $exception) {
+                        $statuscode = 400;
+                    } catch (\PDOException $exception) {
+                        $statuscode = 500;
+                    }
+
+            return new JsonResponse($reactions, $statuscode);
+        }
 }
