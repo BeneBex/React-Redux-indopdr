@@ -8,7 +8,7 @@ class ReactionList extends Component{
 
         this.state = {
             reactions: []
-        }
+        };
 
         this.getReactions();
     }

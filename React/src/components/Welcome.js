@@ -1,17 +1,18 @@
 import React from "react";
+import emoji from 'react-easy-emoji'
 
-const Welcome = () => {
+const Welcome = (props) => {
 
     return (
         <div className="mdl-grid mdl-cell--1-offset">
-            <h2 className="mdl-cell mdl-cell--12-col">Welkom op het forum van Jorne, Bénedicte en Ferre</h2>
+            <h2 className="mdl-cell mdl-cell--12-col">Welkom op het forum</h2>
             <div className="mdl-cell--3-offset mdl-cell--4-col">
-                <h4>
+                <p>
                     <br/><br/>
                     Dit forum is ontwikkeld in React en zou een userinterface moeten voorstellen.
                     Dit forum gaat een PHP Rest api consumeren <br/><br/>
-                    Enjoy!
-                </h4>
+                    Enjoy!{ emoji('😀') }
+                </p>
             </div>
         </div>
     )
